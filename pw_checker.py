@@ -1,3 +1,5 @@
+#! /usr/bin/env python3
+# -*- coding: UTF-8 -*-
 import requests  # 建立各種 HTTP 請求，從網頁伺服器上取得想要的資料。
 import sys
 import hashlib
@@ -10,13 +12,14 @@ def request_api_data(query_char):
     res = requests.get(url)
     if res.status_code != 200:  # 對該ＡＰＩ而言 200才代表正常運行
         raise RuntimeError(
-            f"Here's the Error: {res.status_code}, check the API and try again")
+            f"Here's the Error: , check the API and try again")
     return res
 
 
 def pwned_api_check(password):
     # check whether or not the password exists in API response
-    sha1password = hashlib.sha1(password.encode("UTF-8")).hexdigest
+    # hexidigest 用來轉成16進位
+    sha1password = hashlib.sha1(password.encode("utf-8")).hexdigest().upper()
     return sha1password
 
 
