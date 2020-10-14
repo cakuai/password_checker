@@ -31,3 +31,16 @@ def pwned_api_check(password):
     response = request_api_data(first5_char)  # 回傳的是tails們
     ans = get_password_leak_count(response, tail)
     return ans
+
+
+def main(args):  # 若不加＊ 就代表他只是一般參數
+    for password in args:
+        count = pwned_api_check(password)
+        if count != 0:  # 表示有被leak
+            print(
+                f"{password} was found {count} times, please consider a change......")
+        else:
+            print(f"{password} was NOT FOUND, keep on going")
+
+
+main(sys.argv[1:])
